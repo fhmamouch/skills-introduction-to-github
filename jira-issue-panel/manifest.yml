@@ -1,0 +1,27 @@
+app:
+  id: ari:cloud:ecosystem::app/your-app-id
+  runtime:
+    name: nodejs22.x
+
+modules:
+  jira:issuePanel:
+    - key: issue-quick-info-panel
+      resource: main
+      resolver:
+        function: resolver
+      render: native
+      title: Quick Info
+      icon: https://developer.atlassian.com/platform/forge/images/icons/issue-panel-icon.svg
+
+  function:
+    - key: resolver
+      handler: index.handler
+
+resources:
+  - key: main
+    path: src/frontend/index.tsx
+
+permissions:
+  scopes:
+    - read:jira-work
+    - read:jira-user
